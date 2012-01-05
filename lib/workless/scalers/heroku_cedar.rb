@@ -8,12 +8,12 @@ module Delayed
 
         require "heroku"
 
-        def up
-          client.ps_scale(ENV['APP_NAME'], type: 'worker', qty: 1) if workers == 0
+        def do_up
+          client.ps_scale(ENV['APP_NAME'], type: 'worker', qty: 1)
         end
 
-        def down
-          client.ps_scale(ENV['APP_NAME'], type: 'worker', qty: 0) unless workers == 0 or jobs.count > 0
+        def do_down
+          client.ps_scale(ENV['APP_NAME'], type: 'worker', qty: 0)
         end
 
         def workers

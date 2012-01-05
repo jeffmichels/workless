@@ -8,12 +8,12 @@ module Delayed
 
         require "heroku"
 
-        def up
-          client.set_workers(ENV['APP_NAME'], 1) if workers == 0       
+        def do_up
+          client.set_workers(ENV['APP_NAME'], 1)
         end
 
-        def down
-          client.set_workers(ENV['APP_NAME'], 0) unless workers == 0 or jobs.count > 0
+        def do_down
+          client.set_workers(ENV['APP_NAME'], 0)
         end
 
         def workers
